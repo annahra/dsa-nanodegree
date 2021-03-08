@@ -1,0 +1,53 @@
+Task 0 Run Time Analysis:
+
+getFirstTextRecord: No matter how big the list of texts get, we are always only looking for the first
+text in the array. This means that this function does not rely on the number inputs, which makes the
+Worst Case Big-O runtime O(1), i.e. constant.
+
+getLastCallRecord: No matter how big the list of calls get, we are always only looking for the last
+call in the array. This means that this function does not rely on the number inputs, which makes the
+Worst Case Big-O runtime O(1), i.e. constant.
+
+---------------------
+
+Task 1 Run Time Analysis:
+
+I used a Set instead of a regular list becuase sets have constant lookup time and adding an element is also constant time.
+Since sets have constant lookup time, that would mean that this function would have a run time of O(c+t) where
+c is the number of rows in the calls dataset and t is the number of rows in the text dataset. Since the runtime 
+is dependent on the lengths of both the calls and texts dataset, we can conclude that the overall worst Case 
+runtime will be O(n), where n is the length of the input arrays.
+
+---------------------
+
+Task 2 Run Time Analysis:
+
+I iterate through the array of calls, O(c), while inside I lookup/insert/add values to a dictionary. 
+These operations are constant O(1) for a dictionary, and therefore my runtime is O(c),
+where c is the number of calls in the array
+
+---------------------
+
+Task 3 Run Time Analysis:
+
+Part A:
+I used a set to store all of the area codes. I also made the mobilePrefix a set so that lookup time would be constant.
+I iterated through the calls array exactly once, O(c). Each if statement
+(nested and unnested) take O(1) constant time to excute, adding the Set is theoretically O(1) constant time as well.
+The sorted()algorithm is O(nlogn). This makes that line O(nlog(n)), and the function runtime O(c + nlog(n)) where n 
+is the number of unique codes that calls from Bangladore made. This means that in the worst case, the runtime will be
+O(nlogn).
+
+Part B:
+I iterate though the calls array once, giving a runtime of O(c). The if statements and math operations
+have O(1) constant run time. This makes this function have an overall runtime of O(c)
+
+---------------------
+
+Task 4 Run Time Analysis:
+
+I iterate through the array of texts once and the array of calls twice. I also use a set to keep track of the
+telemarketers and non telemarketers (constant lookup and add). I then sort the set, which gives a runtime of O(nlogn)
+where n is the number of telemarkets in the set. 
+This makes my runtime O(2c+ t + nlogn) where c is the number of calls and t is the number of texts. 
+This means that in the worst case, the runtime will be O(nlogn).
