@@ -8,6 +8,8 @@ Test Case 3 is commented out as we expect each case in
 Test Case 3 to raise an Exception.
 """
 
+import sys
+
 
 class Node:
     def __init__(self, key):
@@ -34,6 +36,13 @@ class DoublyLinkedList:
     def remove_LRU(self):
         if self.head is None:
             return
+
+        if not self.head.next:
+            removed_key = self.head.key
+            self.head = None
+            self.tail = None
+            return removed_key
+
         removed_key = self.head.key
         self.head.next.prev = None
         self.head = self.head.next
@@ -78,6 +87,9 @@ class LRUCache(object):
         # Initialize class variables
         if type(max_capacity) is not int or max_capacity <= 0:
             raise Exception("Not a valid list capacity")
+
+        if max_capacity > sys.maxsize / 5:
+            raise Exception("Cache Capacity too big, choose a smaller number")
 
         self.max_capacity = max_capacity
         self.dlinked_list = DoublyLinkedList()
@@ -157,6 +169,20 @@ def main():
     # zero_cache = LRUCache(0)    # throws exception
     # str_cache = LRUCache('a')   # throws exception
     # neg_cache = LRUCache(-1)    # throws exception
+    # none_cache = LRUCache(None)   # throws exception
+    # high_capacity = LRUCache(sys.maxsize)    # throws exception "Cache Capacity too big, choose a smaller number"
+    print('End of Test Case 3\n')
+
+    # Test Case 4
+    print("Test Case 4 - LRU Cache of size 1")
+    a_cache = LRUCache(1)
+    a_cache.set(1, 1)
+    print('Should return 1: ', a_cache.get(1))
+    a_cache.set(2, 2)
+    print('Should return 2: ', a_cache.get(2))
+    a_cache.set(3, 3)
+    a_cache.set(4, 4)
+    print('Should return 4: ', a_cache.get(4))
 
 
 if __name__ == "__main__":

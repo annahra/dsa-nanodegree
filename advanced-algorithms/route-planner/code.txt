@@ -1,0 +1,28 @@
+from heapq import heapify, heappush, heappop
+from math import sqrt
+
+
+def calc_cost(start, end):
+    return sqrt((end[0] - start[0])**2 + (end[1] - start[1])**2)
+
+
+def shortest_path(M,start,goal):
+    heap = []
+
+    heappush(heap, (0, [start]))
+    
+    while len(heap) > 0:
+        current_cost, current_path = heappop(heap)
+        start_intersection = current_path[len(current_path) - 1]
+        
+        if start_intersection == goal:
+            return current_path
+        
+        intersections_to_explore = M.roads[start_intersection]
+        
+        for intersection in intersections_to_explore:
+            path_cost = calc_cost(M.intersections[start_intersection], M.intersections[intersection]) + current_cost
+            new_path = current_path + [intersection]
+            heappush(heap, (path_cost, new_path))
+    
+    return "no path exists"

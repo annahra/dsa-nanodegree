@@ -7,6 +7,12 @@ Version Date: March 18, 2021
 Test Cases 2 and 3 are commented out because we expect them to throw ValueErrors
 Please uncomment to test.
 
+I am not including a test case for the same timestamp because, by design, my code handles that case
+implicitly. The user just needs to input the data, and the code will record the timestamp when the user
+inputs the data. This is done so that the user does not have the option to input a timestamp - in which case
+they could input the same timestamp, or worse, input a timestamp that is before any of the other timestamps
+in the BlockChain.
+
 """
 
 import hashlib
@@ -77,7 +83,7 @@ def main():
     # eth.add_block("")   # we expect a ValueError, invalid data argument
 
     # Test Case 3 - None Data
-    print("Test Case 3 - None Data Field, uncomment")
+    print("Test Case 3 - None Data Field, uncomment\n")
     ada = BlockChain()
     # ada.add_block(None)     # we expect a ValueError, invalid data argument
 
